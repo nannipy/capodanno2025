@@ -10,7 +10,8 @@ interface ProgressTrackerProps {
 const ProgressTracker: React.FC<ProgressTrackerProps> = ({ dishes }) => {
   const counts = {
     [Category.ANTIPASTO]: dishes.filter(d => d.category === Category.ANTIPASTO).length,
-    [Category.PIATTO_PRINCIPALE]: dishes.filter(d => d.category === Category.PIATTO_PRINCIPALE).length,
+    [Category.PRIMO]: dishes.filter(d => d.category === Category.PRIMO).length,
+    [Category.SECONDO_CONTORNO]: dishes.filter(d => d.category === Category.SECONDO_CONTORNO).length,
     [Category.DOLCE]: dishes.filter(d => d.category === Category.DOLCE).length,
     vegetarian: dishes.filter(d => d.dietary.vegetarian).length,
     vegan: dishes.filter(d => d.dietary.vegan).length,
@@ -19,7 +20,8 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ dishes }) => {
 
   const categories = [
     { name: 'Antipasti', current: counts[Category.ANTIPASTO], max: PARTY_LIMITS[Category.ANTIPASTO], color: 'bg-blue-600' },
-    { name: 'Primi/Secondi', current: counts[Category.PIATTO_PRINCIPALE], max: PARTY_LIMITS[Category.PIATTO_PRINCIPALE], color: 'bg-green-600' },
+    { name: 'Primi', current: counts[Category.PRIMO], max: PARTY_LIMITS[Category.PRIMO], color: 'bg-green-600' },
+    { name: 'Secondi / Contorni', current: counts[Category.SECONDO_CONTORNO], max: PARTY_LIMITS[Category.SECONDO_CONTORNO], color: 'bg-orange-500' },
     { name: 'Dolci', current: counts[Category.DOLCE], max: PARTY_LIMITS[Category.DOLCE], color: 'bg-amber-500' },
   ];
 

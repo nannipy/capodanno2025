@@ -1,7 +1,8 @@
 
 export enum Category {
-  ANTIPASTO = 'Antipasto / Contorno',
-  PIATTO_PRINCIPALE = 'Piatto Principale',
+  ANTIPASTO = 'Antipasto',
+  PRIMO = 'Primo',
+  SECONDO_CONTORNO = 'Secondo / Contorno',
   DOLCE = 'Dolce'
 }
 
@@ -22,7 +23,8 @@ export interface Dish {
 
 export interface Limits {
   [Category.ANTIPASTO]: number;
-  [Category.PIATTO_PRINCIPALE]: number;
+  [Category.PRIMO]: number;
+  [Category.SECONDO_CONTORNO]: number;
   [Category.DOLCE]: number;
   total: number;
 }

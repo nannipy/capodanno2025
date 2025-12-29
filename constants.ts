@@ -2,9 +2,10 @@
 import { Category, Limits } from './types';
 
 export const PARTY_LIMITS: Limits = {
-  [Category.ANTIPASTO]: 12,
-  [Category.PIATTO_PRINCIPALE]: 10,
-  [Category.DOLCE]: 8,
+  [Category.ANTIPASTO]: 5,
+  [Category.PRIMO]: 10,
+  [Category.SECONDO_CONTORNO]: 10,
+  [Category.DOLCE]: 5,
   total: 30
 };
 
@@ -31,7 +32,7 @@ export const INITIAL_DISHES = [
     id: '3',
     contributor: 'Luca',
     title: 'Lasagne alla bolognese',
-    category: Category.PIATTO_PRINCIPALE,
+    category: Category.PRIMO,
     dietary: { vegetarian: false, vegan: false, glutenFree: false },
     timestamp: Date.now()
   }

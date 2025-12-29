@@ -75,23 +75,23 @@ const DishForm: React.FC<DishFormProps> = ({ onAdd, dishes, onCancel }) => {
           <div className="flex flex-wrap gap-3">
             {Object.values(Category).map((cat) => {
               const count = dishes.filter(d => d.category === cat).length;
-              const isFull = count >= PARTY_LIMITS[cat];
+              const limit = PARTY_LIMITS[cat] || 10;
+              const isFull = count >= limit;
               const isSelected = category === cat;
               return (
                 <button
                   key={cat}
                   type="button"
-                  disabled={isFull}
                   onClick={() => setCategory(cat)}
                   className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
                     isSelected
                       ? 'bg-[#e8f0fe] border-[#1a73e8] text-[#1967d2]'
                       : isFull
-                      ? 'bg-gray-50 border-gray-100 text-gray-300 cursor-not-allowed'
+                      ? 'bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100' // Changed style for full but allowed
                       : 'border-[#dadce0] text-[#5f6368] hover:bg-gray-50'
                   }`}
                 >
-                  {cat} <span className="ml-1 opacity-60">({count}/{PARTY_LIMITS[cat]})</span>
+                  {cat} <span className="ml-1 opacity-60">({count}/{limit})</span>
                 </button>
               );
             })}

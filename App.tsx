@@ -79,15 +79,7 @@ const App: React.FC = () => {
         <div className="bg-white rounded-[28px] p-6 md:p-8 mb-8 border border-gray-200">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-medium text-[#5f6368]">Riepilogo</h2>
-            {!isFormOpen && (
-              <button
-                onClick={() => setIsFormOpen(true)}
-                className="bg-[#C2E7FF] text-[#001D35] px-5 py-2.5 rounded-full text-sm font-medium hover:shadow-md transition-all flex items-center gap-2"
-              >
-                <i className="fas fa-plus"></i>
-                Aggiungi Piatto
-              </button>
-            )}
+            
           </div>
           <ProgressTracker dishes={dishes} />
         </div>
@@ -107,6 +99,17 @@ const App: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Material FAB */}
+      {!isFormOpen && (
+        <button
+          onClick={() => setIsFormOpen(true)}
+          className="fixed bottom-8 right-8 bg-[#C2E7FF] text-[#001D35] px-6 py-4 rounded-[20px] shadow-lg hover:shadow-xl transition-all flex items-center gap-3 z-50 group"
+        >
+          <i className="fas fa-plus text-lg"></i>
+          <span className="font-medium">Aggiungi Piatto</span>
+        </button>
+      )}
     </div>
   );
 };

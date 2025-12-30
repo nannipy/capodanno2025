@@ -46,7 +46,7 @@ const LocationPage: React.FC = () => {
                 Fornole (TR)
               </p>
               <p className="text-gourmet-text/80 leading-relaxed">
-                Strada di Cecanibbio 50, 
+                Strada di Cecanibbio 50 
               </p>
             </div>
 

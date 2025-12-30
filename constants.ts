@@ -2,10 +2,10 @@
 import { Category, Limits } from './types';
 
 export const PARTY_LIMITS: Limits = {
-  [Category.ANTIPASTO]: 5,
-  [Category.PRIMO]: 10,
-  [Category.SECONDO_CONTORNO]: 10,
-  [Category.DOLCE]: 5,
+  [Category.ANTIPASTO]: 6,
+  [Category.PRIMO]: 12,
+  [Category.SECONDO_CONTORNO]: 12,
+  [Category.DOLCE]: 7,
   total: 30
 };
 

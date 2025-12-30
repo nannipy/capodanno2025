@@ -31,26 +31,30 @@ const DishForm: React.FC<DishFormProps> = ({ onAdd, dishes, onCancel }) => {
   };
 
   return (
-    <div className="bg-white rounded-[28px] p-8 border border-gray-200 shadow-sm animate-in fade-in zoom-in-95 duration-300">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-medium text-[#202124]">Aggiungi il tuo piatto</h2>
-        <button onClick={onCancel} className="text-[#5f6368] hover:bg-gray-100 p-2 rounded-full transition-colors">
-          <i className="fas fa-times"></i>
+    <div className="w-full bg-white md:rounded-3xl rounded-t-[32px] rounded-b-none p-6 md:p-8 shadow-2xl border border-stone-200/50 max-h-[90vh] overflow-y-auto">
+      <div className="flex justify-between items-center mb-8 sticky top-0 bg-white z-10 py-2">
+        <h2 className="text-2xl font-serif font-bold text-gourmet-dark">Aggiungi il tuo piatto</h2>
+        <button onClick={onCancel} className="text-stone-400 hover:bg-stone-100 p-2 rounded-full transition-colors">
+          <i className="fas fa-times text-xl"></i>
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-8 pb-8 md:pb-0">
         <div className="space-y-6">
           <div className="relative group">
             <input
               required
               type="text"
+              id="contributor"
               value={contributor}
               onChange={(e) => setContributor(e.target.value)}
-              className="w-full border border-[#dadce0] rounded-lg px-4 py-4 focus:border-[#1a73e8] focus:border-2 focus:ring-0 peer bg-transparent transition-all outline-none"
-              placeholder=" "
+              className="peer w-full border-b-2 border-stone-200 bg-transparent px-0 py-3 text-lg text-gourmet-dark focus:border-gourmet-gold focus:outline-none transition-colors placeholder-transparent"
+              placeholder="Il tuo nome"
             />
-            <label className="absolute left-4 top-4 text-[#5f6368] transition-all duration-200 pointer-events-none origin-left transform peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-85 peer-focus:-translate-y-7 peer-focus:text-[#1a73e8] peer-focus:bg-white peer-focus:px-1 peer-[:not(:placeholder-shown)]:scale-85 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1">
+            <label 
+              htmlFor="contributor"
+              className="absolute left-0 -top-3.5 text-xs font-medium text-stone-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-lg peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-gourmet-gold"
+            >
               Il tuo nome
             </label>
           </div>
@@ -59,20 +63,24 @@ const DishForm: React.FC<DishFormProps> = ({ onAdd, dishes, onCancel }) => {
             <input
               required
               type="text"
+              id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border border-[#dadce0] rounded-lg px-4 py-4 focus:border-[#1a73e8] focus:border-2 focus:ring-0 peer bg-transparent transition-all outline-none"
-              placeholder=" "
+              className="peer w-full border-b-2 border-stone-200 bg-transparent px-0 py-3 text-lg text-gourmet-dark focus:border-gourmet-gold focus:outline-none transition-colors placeholder-transparent"
+              placeholder="Cosa porti?"
             />
-            <label className="absolute left-4 top-4 text-[#5f6368] transition-all duration-200 pointer-events-none origin-left transform peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-85 peer-focus:-translate-y-7 peer-focus:text-[#1a73e8] peer-focus:bg-white peer-focus:px-1 peer-[:not(:placeholder-shown)]:scale-85 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1">
+            <label 
+              htmlFor="title"
+              className="absolute left-0 -top-3.5 text-xs font-medium text-stone-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-lg peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-gourmet-gold"
+            >
               Cosa porti?
             </label>
           </div>
         </div>
 
         <div className="space-y-4">
-          <label className="text-sm font-medium text-[#5f6368] block">Categoria</label>
-          <div className="flex flex-wrap gap-3">
+          <label className="text-sm font-semibold text-gourmet-text/60 uppercase tracking-wider block">Categoria</label>
+          <div className="grid grid-cols-2 gap-3">
             {Object.values(Category).map((cat) => {
               const count = dishes.filter(d => d.category === cat).length;
               const limit = PARTY_LIMITS[cat] || 10;
@@ -83,15 +91,18 @@ const DishForm: React.FC<DishFormProps> = ({ onAdd, dishes, onCancel }) => {
                   key={cat}
                   type="button"
                   onClick={() => setCategory(cat)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
+                  className={`px-4 py-3 rounded-xl text-sm font-medium border text-left transition-all flex justify-between items-center ${
                     isSelected
-                      ? 'bg-[#e8f0fe] border-[#1a73e8] text-[#1967d2]'
+                      ? 'bg-gourmet-gold text-white border-gourmet-gold shadow-md scale-[1.02]'
                       : isFull
-                      ? 'bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100' // Changed style for full but allowed
-                      : 'border-[#dadce0] text-[#5f6368] hover:bg-gray-50'
+                      ? 'bg-stone-50 border-stone-200 text-stone-400 cursor-not-allowed opacity-60'
+                      : 'bg-white border-stone-200 text-stone-600 hover:border-gourmet-gold/50 hover:bg-stone-50'
                   }`}
                 >
-                  {cat} <span className="ml-1 opacity-60">({count}/{limit})</span>
+                  <span>{cat}</span>
+                  <span className={`text-xs ${isSelected ? 'text-white/80' : 'text-stone-400'}`}>
+                    {count}/{limit}
+                  </span>
                 </button>
               );
             })}
@@ -99,33 +110,36 @@ const DishForm: React.FC<DishFormProps> = ({ onAdd, dishes, onCancel }) => {
         </div>
 
         <div className="space-y-4">
-          <label className="text-sm font-medium text-[#5f6368] block">Esigenze alimentari</label>
-          <div className="flex flex-wrap gap-4">
+          <label className="text-sm font-semibold text-gourmet-text/60 uppercase tracking-wider block">Note Alimentari</label>
+          <div className="flex flex-wrap gap-3">
             {[
               { id: 'vegan', label: 'Vegano', icon: 'fa-seedling' },
               { id: 'glutenFree', label: 'Senza Glutine', icon: 'fa-wheat-awn' }
-            ].map((tag) => (
-              <button
-                key={tag.id}
-                type="button"
-                onClick={() => setDietary(prev => ({ ...prev, [tag.id]: !prev[tag.id as keyof DietaryInfo] }))}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-sm transition-all ${
-                  dietary[tag.id as keyof DietaryInfo]
-                    ? 'bg-[#e6f4ea] border-[#1e8e3e] text-[#137333]'
-                    : 'bg-white border-[#dadce0] text-[#5f6368] hover:bg-gray-50'
-                }`}
-              >
-                <i className={`fas ${tag.icon}`}></i>
-                <span>{tag.label}</span>
-              </button>
-            ))}
+            ].map((tag) => {
+              const isActive = dietary[tag.id as keyof DietaryInfo];
+              return (
+                <button
+                  key={tag.id}
+                  type="button"
+                  onClick={() => setDietary(prev => ({ ...prev, [tag.id]: !prev[tag.id as keyof DietaryInfo] }))}
+                  className={`flex items-center gap-2 px-4 py-3 rounded-full border text-sm transition-all ${
+                    isActive
+                      ? 'bg-green-100 border-green-200 text-green-800 font-medium'
+                      : 'bg-white border-stone-200 text-stone-500 hover:bg-stone-50'
+                  }`}
+                >
+                  <i className={`fas ${tag.icon} ${isActive ? 'text-green-600' : 'text-stone-300'}`}></i>
+                  <span>{tag.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div className="pt-4 flex gap-4">
+        <div className="pt-6">
           <button
             type="submit"
-            className="flex-1 bg-google-blue text-white py-4 rounded-full font-medium shadow-md hover:shadow-lg transition-all"
+            className="w-full bg-gourmet-gold text-white py-5 rounded-2xl font-serif font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.98] transition-all flex justify-center items-center gap-2"
           >
             Conferma piatto
           </button>

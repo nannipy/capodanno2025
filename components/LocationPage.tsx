@@ -75,7 +75,7 @@ const LocationPage: React.FC = () => {
               </h3>
               <div className="bg-gourmet-base p-4 rounded-xl border border-stone-200/50">
                 <p className="text-gourmet-text/80 mb-2">
-                  Ricordati di portare sacco a pelo e se ce l'hai materassino gonfiabile e asciugamano   
+                  Ricordati di portare un sacco a pelo, un asciugamano e se ce l'hai un materassino gonfiabile 
                 </p>
               </div>
             </div>
